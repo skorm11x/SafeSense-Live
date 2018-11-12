@@ -1,0 +1,59 @@
+.header img{
+  float: left;
+}
+body{
+    margin:0;
+    padding:0;
+    overflow: auto;
+    font-family: Raleway;
+}
+h2{
+  float: left;
+}
+header{
+    background: #2b303b;
+    height: 50px;
+    width:100%;
+    display: flex;
+    color:#fff;
+}
+.subheader{
+    display: flex;
+    align-items: center;
+    margin: 0px;
+}
+
+.logout{
+    flex:1;
+    justify-content: flex-end;
+    padding:15px;
+    display: none;
+}
+
+.logout a{
+    color:#fff;
+    text-decoration: none;
+}
+canvas{
+  display: block;
+}
+#channelChart{
+    height: 70% !important;
+    width: 90% !important;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+#barChannelChart{
+  width: 90% !important;
+  height: 70% !important;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  /* float: right; */
+}
+.hide{
+  display: none;
+}

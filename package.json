@@ -1,0 +1,24 @@
+{
+  "name": "safesense-live",
+  "version": "1.0.0",
+  "description": "Near-Realtime heltmet based sensing application",
+  "main": "server.js",
+  "scripts": {
+    "test": "tstCMD"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kosik-Chris/SafeSense-Live.git"
+  },
+  "author": "Christopher J. Kosik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kosik-Chris/SafeSense-Live/issues"
+  },
+  "homepage": "https://github.com/Kosik-Chris/SafeSense-Live#readme",
+  "dependencies": {
+    "canvas-gauges": "^2.1.5",
+    "express": "^4.16.4",
+    "serialport": "^7.0.2"
+  }
+}
