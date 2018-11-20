@@ -38,16 +38,16 @@ canvas{
   display: block;
 }
 #channelChart{
-    height: 70% !important;
-    width: 90% !important;
+    height: 70%;
+    width: 90%;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
     margin-right: auto;
 }
 #barChannelChart{
-  width: 90% !important;
-  height: 70% !important;
+  width: 100% !important;
+  height: 100% !important;
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;

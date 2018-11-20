@@ -1,21 +1,10 @@
-// Using IIFE for Implementing Module Pattern to keep the Local Space for the JS Variables
 (function() {
-    // Enable pusher logging - don't include this in production
-    // Pusher.logToConsole = true;
+  var mode = 0;
+    ajax('../../getModeSelect',"GET",{},onFetchModeSuccess);
 
-
-    //Animation Stuff
-    // Chart.defaults.global = {
-    //   animation: true,
-    //   animationSteps: 60,
-    //   animationEasing:"easeOutBack",
-    //   showScale: true,
-    //   scaleOverride: false,
-    //   scaleSteps: null,
-    //   onAnimationProgress: function(){},
-    //   onAnimationComplete: function(){}
-    // };
-
+    function onFetchModeSuccess(response){
+        mode = JSON.parse(response);
+    }
 
     function showEle(elementId){
       document.getElementById(elementId).style.display = 'flex';
@@ -132,6 +121,58 @@
           });
        }
 
+       function renderDiffChart(forceData) {
+             var ctx = document.getElementById("diffChart").getContext("2d");
+             var options = {
+                 responsive: true,
+                 legend:{
+                   position: 'right',
+                   display: true,
+                   maxWidth: 1000,
+
+                 },
+                 scales:{
+                   xAxes:[{
+                   gridLines: {
+                     display: false,
+                     color: "black"
+                   },
+                   scaleLabel:{
+                     display: true,
+                     labelString: "Time in Seconds",
+                     fontColor: "blue",
+                     fontSize: 32
+                   },
+                   fontSize: 32
+                 }],
+                 yAxes: [{
+                     gridLines: {
+                         display: false,
+                         color: "black",
+                         borderDash: [2, 5],
+                       },
+                       scaleLabel: {
+                         display: true,
+                         labelString: "Force",
+                         fontColor: "green",
+                         fontSize: 32
+                       },
+                       // ticks: {
+                       //   min: 1300,
+                       //   max: 2000,
+                       //   stepsize: 1
+                       // },
+                       fontSize: 32
+                   }]
+                 }
+              };
+             diffChartRef = new Chart(ctx, {
+               type: "line",
+               data: forceData,
+               options: options
+             });
+          }
+
        var chartBarGraph = {
          labels: ['Channel1','Channel2','Channel3','Channel4','Channel5',
          'Channel6','Channel7','Channel8','Channel9','Channel10','Channel11',
@@ -145,6 +186,364 @@
            data: []
           }
         ]
+       };
+
+       var diffLineGraph = {
+          labels: [],
+          datasets: [
+             {
+                label: "Channel 1",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(255,205,66,0.4)",
+                borderColor: "rgba(255,205,66,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 2",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(255,99,132,0.4)",
+                borderColor: "rgba(255,99,132,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 3",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(54,162,235,0.4)",
+                borderColor: "rgba(54,162,235,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 4",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(134,95,197,0.4)",
+                borderColor: "rgba(134,95,197,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(134,95,197,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 5",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(102,51,0,0.4)",
+                borderColor: "rgba(102,51,0,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(102,51,0,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 6",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(109,159,109,0.4)",
+                borderColor: "rgba(109,159,109,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(109,159,109,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 7",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(196,36,37,0.4)",
+                borderColor: "rgba(196,36,37,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(196,36,37,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 8",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(78,245,250,0.4)",
+                borderColor: "rgba(78,245,250,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(78,245,250,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 9",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(0,255,127,0.4)",
+                borderColor: "rgba(0,255,127,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(0,255,127,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 10",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(255,0,255,0.4)",
+                borderColor: "rgba(255,0,255,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(255,0,255,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 11",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(255,0,127,0.4)",
+                borderColor: "rgba(255,0,127,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(255,0,127,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 12",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(0,255,255,0.4)",
+                borderColor: "rgba(0,255,255,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(0,255,255,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 13",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(251,206,177,0.4)",
+                borderColor: "rgba(251,206,177,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(251,206,177,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 14",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(253,238,0,0.4)",
+                borderColor: "rgba(253,238,0,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(253,238,0,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 15",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(132,132,130,0.4)",
+                borderColor: "rgba(132,132,130,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(132,132,130,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+             {
+                label: "Channel 16",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(254,111,94,0.4)",
+                borderColor: "rgba(254,111,94,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(254,111,94,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
+             },
+          ]
        };
 
        var chartLineGraph = {
@@ -512,10 +911,13 @@
           hideEle("loader");
           var respData = JSON.parse(response);
           chartLineGraph.labels = respData.dataPoints.map(dataPoint => dataPoint.time);
+          diffLineGraph.labels = respData.dataPoints.map(dataPoint => dataPoint.time);
           for(var i=0; i<16; i++){
             chartLineGraph.datasets[i].data = respData.dataPoints.map(dataPoint => dataPoint.force);
+            diffLineGraph.datasets[i].data = respData.dataPoints.map(dataPoint => dataPoint.force);
           }
           renderForceChart(chartLineGraph)
+          renderDiffChart(diffLineGraph)
       }
 
       function onFetchTempSuccessBar(response){
@@ -530,7 +932,12 @@
 
   var dummyTime = 0;
   setInterval(function(){
+    if(mode == 1){
+      ajax("/getRandomData", "GET",{}, onFetchRandomDataSuccess);
+    }
+    if(mode == 4){
       ajax("/getForceData", "GET",{}, onFetchForceDataSuccess);
+    }
     }, 100);
 
   setTimeout(function(){
@@ -543,11 +950,22 @@
 // console.log('forces: ', forces);
       // update chart with new force data
       //Temp time hack..
-      if(dummyTime == 600){
+      if(dummyTime == 60){
         dummyTime = 0;
       }
       updateChart(forces, dummyTime);
       dummyTime = dummyTime + 0.25;
+    }
+  }
+
+  function onFetchRandomDataSuccess(response){
+    var forces = JSON.parse(response);
+    if(Array.isArray(forces)){
+      if(dummyTime == 600){
+        dummyTime = 0;
+      }
+      updateChart(forces,dummyTime);
+      dummyTime +=0.25;
     }
   }
 
@@ -562,14 +980,18 @@
       // console.log(time);
     if(forceChartRef.data.labels.length > 27){
       forceChartRef.data.labels.shift();
+      diffChartRef.data.labels.shift();
       for(var i=0; i<16; i++){
         forceChartRef.data.datasets[i].data.shift();
+        diffChartRef.data.datasets[i].data.shift();
       }
     }
   forceChartRef.data.labels.push(time);
+  diffChartRef.data.labels.push(time);
     for(var i=0; i<16; i++) {
 // console.log(forceArray[i]);
       forceChartRef.data.datasets[i].data.push(forceArray[i]);
+      diffChartRef.data.datasets[i].data.push(forceArray[i]);
       // forceBarchartRef.data.datasets[0].data.push(forceArray[i+1]);
     }
     // forceBarchartRef.data.datasets[0].data.push(forceArray[0);
@@ -580,6 +1002,7 @@
     j++;
     //At j = 10 baseLineArray should have 10 arrays inside of it.
     forceChartRef.update();
+    diffChartRef.update();
     // forceBarchartRef.update();
     if(j == 10){
       console.log(baseLineArray);
