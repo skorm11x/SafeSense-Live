@@ -56,7 +56,7 @@ var prompt = require('prompt');
         }
         if(result.specifier == 2){
           modeSelect = 2;
-          console.log('modeSelect = '+modeSelect+', sineWace Test');
+          console.log('modeSelect = '+modeSelect+', sineWave Test');
           setupServer();
         }
         if(result.specifier == 3){
