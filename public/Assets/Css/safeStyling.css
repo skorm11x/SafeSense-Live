@@ -1,3 +1,29 @@
+nav.navbar.navbar-expand-lg{
+  background-color:  #E9F1FA;
+  padding-left:20px;
+  border: solid;
+  z-index: 50;
+  transition: 1s;
+  text-align: center;
+}
+nav.navbar.navbar-expand-lg:hover{
+  background-color: #459DBB;
+}
+nav.navbar.navbar-expand-lg a:hover{
+  text-decoration: underline;
+}
+.rightSection{
+  padding-right: 25px;
+  display: block;
+}
+.nav-link{
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+}
+.nav-link:hover{
+    color: black;
+}
 .header img{
   float: left;
 }

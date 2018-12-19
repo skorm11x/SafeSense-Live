@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <title>SafeSense LIVE</title>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200">
+        <link rel="stylesheet" href="./Assets/Css/safeStyling.css">
+        <link rel="icon" type="image/png" href="./Assets/Images/siteIcon.jpg"/>
+        <meta name="description" content="HomePage for SafeSense LIVE" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg">
+        <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="how.html">
+                  How?
+                </a>
+              </li>
+            </ul>
+          <div class="ml-md-auto rightSection">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="database.html">
+                  Database
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                  Dashboard
+                </a>
+              </li>
+            </ul>
+          </div>
+          </div>
+        </nav>
+      <div class="header">
+        <img src="./Assets/Images/SafeSense Technologies (Logo).jpg" height="55px"/>
+        <h2>Realtime Channel Updates</h2>
+      </div>
+        <header>
+            <div id="logout" class="logout">
+               <a href="/logout">Logout</a>
+            </div>
+        </header>
+        <section>
+           <div id="loader" class="loader">
+              Loading...
+           </div>
+           <br />
+           <canvas id="channelChart"></canvas>
+        </section>
+      <section>
+         <div id="loader" class="loader">
+            Loading...
+         </div>
+         <br />
+         <canvas id="diffChart"></canvas>
+      </section>
+        <section>
+          <canvas id="barChannelChart" class="hide"></canvas>
+        </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+        <script type="text/javascript" src="./Scripts/main.js"></script>
+    </body>
+</html>
