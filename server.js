@@ -24,6 +24,7 @@ var app = express();
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('title','SafeSense LIVE');
 
 
   var dataAvail = false;
@@ -76,7 +77,7 @@ var prompt = require('prompt');
 // ********************
 // Setup Server
 // ********************
-
+//TODO: Update JSON Location to reflect running server of Dell precision Tower
 function setupServer(){
   var channelChartData = {
       location: 'Demo',
@@ -89,7 +90,7 @@ function setupServer(){
         }
       ]
     }
-  //TEMP Bar Chart Data
+  //TODO: Update JSON Location to reflect running server of Dell precision Tower
   var barChartData = {
     location: 'Demo',
     unit: 'newtons',
