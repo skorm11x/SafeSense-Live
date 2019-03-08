@@ -19,6 +19,16 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
+            <!--***DEFINE 3D MODEL SCRIPTS***-->
+            <script src="./Scripts/WebGL/three.min.js"></script>
+            <script src="./Scripts/WebGL/OrbitControls.js"></script>
+            <script src="./Scripts/WebGL/OBJLoader.js"></script>
+            <script src="./Scripts/WebGL/MTLLoader.js"></script>
+            <!--*** END DEFINE 3D MODEL SCRIPTS***-->
+
+            <!--Main script for page 3D models-->
+            <script src="./Scripts/HeadImpactModel.js"></script>
+
     </head>
     <body>
       <nav class="navbar navbar-expand-lg">
@@ -34,7 +44,12 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="how.html">
-                  How?
+                  Site help
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">
+                  About us
                 </a>
               </li>
             </ul>
@@ -69,18 +84,81 @@
            </div>
            <br />
            <canvas id="channelChart"></canvas>
+           <!-- <a href="javascript:toggleLegend()">Legend Toggle</a> -->
+           <!-- <a href="javascript:toggleTooltips()">Tool Tip Toggle</a> -->
         </section>
       <section>
-         <div id="loader" class="loader">
-            Loading...
-         </div>
+        <br />
+        <br />
          <br />
          <canvas id="diffChart"></canvas>
       </section>
-        <section>
+      <br />
+      <br />
+      <canvas id="sensorCircles" height="600" width="1000">
+        <script>
+          var c = document.getElementById("sensorCircles");
+          var ctx = c.getContext("2d");
+          ctx.beginPath();
+          ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(225, 75, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(100, 190, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(225, 190, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(450, 75, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(575, 75, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(450, 190, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(575, 190, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(100, 350, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(225, 350, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(100, 465, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(225, 465, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.arc(450, 350, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(575, 350, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(450, 465, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(575, 465, 50, 0, 2 * Math.PI);
+          ctx.stroke();
+        </script>
+      </canvas>
+      <br />
+        <!-- <section>
           <canvas id="barChannelChart" class="hide"></canvas>
-        </section>
+        </section> -->
+        <div id="HeadImpactModel">
+
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
         <script type="text/javascript" src="./Scripts/main.js"></script>
     </body>
 </html>
