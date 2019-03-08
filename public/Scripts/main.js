@@ -29,13 +29,26 @@
           var ctx = document.getElementById("barChannelChart").getContext("2d");
           var options = {
               responsive: true,
+              cubicInterpolationMode: 'default',
+              steppedLine: false,
               legend: {
-                position: 'top',
+                display: true,
+                position: 'bottom',
               },
               title: {
-                display: true,
-                text: 'Channel Graph',
+                display: false,
+                text: 'Force values per Channel',
                 fontSize: 32
+              },
+              pan: {
+                enabled: true,
+                mode: 'x',
+                speed: 10,
+                threshold: 10
+              },
+              zoom: {
+                enabled: true,
+                mode: 'y',
               },
               scales: {
                 yAxes: [{
@@ -77,7 +90,23 @@
                 position: 'right',
                 display: true,
                 maxWidth: 1000,
-
+                cubicInterpolationMode: 'default',
+                steppedLine: false,
+              },
+              title: {
+                display: true,
+                text: 'Force Data Channel Graph',
+                fontSize: 32
+              },
+              pan: {
+                enabled: true,
+                mode: 'x',
+                speed: 10,
+                threshold: 10
+              },
+              zoom: {
+                enabled: true,
+                mode: 'y',
               },
               scales:{
                 xAxes:[{
@@ -89,7 +118,7 @@
                   display: true,
                   labelString: "Time in Seconds",
                   fontColor: "blue",
-                  fontSize: 32
+                  fontSize: 32,
                 },
                 fontSize: 32
               }],
@@ -101,16 +130,16 @@
                     },
                     scaleLabel: {
                       display: true,
-                      labelString: "Impact value",
+                      labelString: "ADC value",
                       fontColor: "green",
-                      fontSize: 32
+                      fontSize: 32,
                     },
                     // ticks: {
                     //   min: 1300,
                     //   max: 2000,
                     //   stepsize: 1
                     // },
-                    fontSize: 32
+                    fontSize: 32,
                 }]
               }
            };
@@ -129,7 +158,23 @@
                    position: 'right',
                    display: true,
                    maxWidth: 1000,
-
+                  cubicInterpolationMode: 'default',
+                  steppedLine: false,
+                 },
+                 title: {
+                   enabled: true,
+                   text: 'Impact Force Channel Graph',
+                   fontSize: 32
+                 },
+                 pan: {
+                   enabled: true,
+                   mode: 'x',
+                   speed: 10,
+                   threshold: 10
+                 },
+                 zoom: {
+                   enabled: true,
+                   mode: 'y',
                  },
                  scales:{
                    xAxes:[{
@@ -153,7 +198,7 @@
                        },
                        scaleLabel: {
                          display: true,
-                         labelString: "Force",
+                         labelString: "Impact Force",
                          fontColor: "green",
                          fontSize: 32
                        },
@@ -546,6 +591,8 @@
           ]
        };
 
+
+
        var chartLineGraph = {
           labels: [],
           datasets: [
@@ -935,6 +982,12 @@
     if(mode == 1){
       ajax("/getRandomData", "GET",{}, onFetchRandomDataSuccess);
     }
+    if(mode == 2){
+      ajax("/getSineData", "GET",{}, onFetchSineDataSuccess);
+    }
+    if(mode == 3){
+      ajax("/getSampleData","GET",{},onFetchSampleDataSuccess);
+    }
     if(mode == 4){
       ajax("/getForceData", "GET",{}, onFetchForceDataSuccess);
     }
@@ -944,20 +997,7 @@
    document.getElementById('barChannelChart').classList.remove('hide');
   }, 5000);
 
-  function onFetchForceDataSuccess(response) {
-    var forces = JSON.parse(response);
-    if (Array.isArray(forces)) {
-// console.log('forces: ', forces);
-      // update chart with new force data
-      //Temp time hack..
-      if(dummyTime == 60){
-        dummyTime = 0;
-      }
-      updateChart(forces, dummyTime);
-      dummyTime = dummyTime + 0.25;
-    }
-  }
-
+//Mode 1 Success response - Random
   function onFetchRandomDataSuccess(response){
     var forces = JSON.parse(response);
     if(Array.isArray(forces)){
@@ -966,6 +1006,39 @@
       }
       updateChart(forces,dummyTime);
       dummyTime +=0.25;
+    }
+  }
+//Mode 2 Success response - Sine
+ function onFetchSineDataSuccess(response){
+   var forces = JSON.parse(response);
+   if (Array.isArray(forces)) {
+     if(dummyTime == 60){
+       dummyTime = 0;
+     }
+     updateChart(forces, dummyTime);
+     dummyTime = dummyTime + 0.25;
+   }
+ }
+//Mode 3 Success response - Sample
+function onFetchSampleDataSuccess(response){
+  var forces = JSON.parse(response);
+  if (Array.isArray(forces)) {
+    if(dummyTime == 60){
+      dummyTime = 0;
+    }
+    updateChart(forces, dummyTime);
+    dummyTime = dummyTime + 0.25;
+  }
+}
+//Mode 4 Success response - Live
+  function onFetchForceDataSuccess(response) {
+    var forces = JSON.parse(response);
+    if (Array.isArray(forces)) {
+      if(dummyTime == 60){
+        dummyTime = 0;
+      }
+      updateChart(forces, dummyTime);
+      dummyTime = dummyTime + 0.25;
     }
   }
 
@@ -1011,6 +1084,7 @@
     }
 
   }
+
 
 
 //************Begin Baseline section****************
@@ -1122,3 +1196,21 @@ function differential(forceArray){
 
 
 })();
+// 
+// function toggleLegend(){
+//   if(Chart.defaults.global.legend.display == true){
+//       Chart.defaults.global.legend.display = false;
+//   }
+//   else{
+//     Chart.defaults.global.legend.display = true;
+//   }
+// }
+//
+// function toggleTooltips(){
+//   if(Chart.defaults.tooltips.enabled == true){
+//     Chart.defaults.tooltips.enabled = false;
+//   }
+//   else{
+//     Chart.defaults.tooltips.enabled = true;
+//   }
+// }
