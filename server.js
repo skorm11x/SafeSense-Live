@@ -14,6 +14,7 @@ const sineWaveTest = require('./Test/sineWaveTest');
 const sampleTest = require('./Test/sampleData');
 const zigBee = require('./Zigbee/serialPorts');
 const opn = require('opn');
+const requireJS = require('requirejs');
 
 const express = require('express');
 var path = require('path');
@@ -21,13 +22,21 @@ var bodyParse = require('body-parser');
 
 var app = express();
 
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "testuser",
+  password: " "
+});
+
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('title','SafeSense LIVE');
 
 
-  var dataAvail = false;
+var dataAvail = false;
 // ************************
 // Aquire Program Mode desired
 // ************************
@@ -80,19 +89,19 @@ var prompt = require('prompt');
 //TODO: Update JSON Location to reflect running server of Dell precision Tower
 function setupServer(){
   var channelChartData = {
-      location: 'Demo',
+      location: 'Western Michigan University',
       channel: 'channel',
       unit: 'newtons',
       dataPoints: [
         {
           time: 0,
-          force: 1200
+          force: 1000
         }
       ]
     }
   //TODO: Update JSON Location to reflect running server of Dell precision Tower
   var barChartData = {
-    location: 'Demo',
+    location: 'Western Michigan University',
     unit: 'newtons',
     dataPoints: [
       {
@@ -104,7 +113,7 @@ function setupServer(){
 //Open default user browser
 opn('http://localhost:3000');
 
-
+//GET request for modeSelect
   app.get('/getModeSelect', function(req,res){
     var f = JSON.stringify(modeSelect);
     res.send(f);
@@ -150,6 +159,53 @@ opn('http://localhost:3000');
     }
   });
 
+
+    app.get('/getRandomData',function(req,res){
+        var result = randomTest.getRandomInt(0,1800);
+        res.send(result);
+    });
+
+    /*
+    Function has total of 32 points for full sine wave rotation
+    Fpp max (force peak value: 1800 (unitless) ) Fpp min : 200
+    Each step results in 100 (unitless) increase in value.
+    Each channel has offset of 10 (8 treated as "middle") at 1000
+    */
+    var modifier = 0;
+    var riseChk = 1;
+    app.get('/getSineData',function(req,res){
+        var result = sineWaveTest.getSineTest(modifier);
+        if(modifier >= 0 && riseChk == 1 && modifier < 800){
+          modifier += 100;
+        }
+        if(modifier == 800){
+          riseChk = 0;
+          modifier-=100;
+        }
+        if(modifier > -800 && riseChk == 0 && modifier < 800){
+          modifier-=100;
+        }
+        if(modifier == -800){
+          riseChk = 1;
+          modifier += 100;
+        }
+        if(modifier >-800 && riseChk == 1){
+          modifier += 100;
+        }
+        res.send(result);
+    });
+
+    /*
+    Function pulls the sampleData set from the local database
+    This function runs continuously as a demo in house
+    */
+    app.get('/getSampleData',function(req,res){
+
+    });
+
+    /*
+    Function reads data points from Zigbee connection
+    */
     app.get('/getForceData', function(req,res) {
     // console.log('dataAvail: ', dataAvail);
       if (dataAvail) {
@@ -161,11 +217,6 @@ opn('http://localhost:3000');
       }
     });
 
-    app.get('/getRandomData',function(req,res){
-        var result = randomTest.getRandomInt(0,1800);
-        res.send(result);
-    });
-
 
     //Handle 404
     app.use(function(req,res,next){
@@ -174,8 +225,10 @@ opn('http://localhost:3000');
       next(error404);
     });
 
+    //Export the App
     module.exports = app;
 
+    //Display a message in command line listing Port used
     app.listen(3000,function(){
       console.log('SafeSense LIVE is running on port 3000');
     })
