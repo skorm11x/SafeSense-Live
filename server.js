@@ -91,7 +91,7 @@ function setupServer(){
   var channelChartData = {
       location: 'Western Michigan University',
       channel: 'channel',
-      unit: 'newtons',
+      unit: 'ADC Values',
       dataPoints: [
         {
           time: 0,
@@ -99,6 +99,18 @@ function setupServer(){
         }
       ]
     }
+
+  var channelChartDiffData = {
+    location: 'Western Michigan University',
+    channel: 'channel',
+    unit: 'Newtons',
+    dataPoints: [
+      {
+        time: 0,
+        force: 0,
+      }
+    ]
+  }
   //TODO: Update JSON Location to reflect running server of Dell precision Tower
   var barChartData = {
     location: 'Western Michigan University',
@@ -145,7 +157,7 @@ opn('http://localhost:3000');
     }
   });
 
-  //API ingest new data points Linechart
+  //API ingest new data points Barchart
   app.get('/addbarData', function(req,res){
     var temp = parseInt(req.query.force);
     if(temp && !isNaN(temp)){
