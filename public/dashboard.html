@@ -30,7 +30,7 @@
             <script src="./Scripts/HeadImpactModel.js"></script>
 
     </head>
-    <body>
+    <body onload="renderCircles()">
       <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -90,62 +90,42 @@
       </section>
       <br />
       <br />
-      <canvas id="sensorCircles" height="600" width="1000">
-        <script>
-          var c = document.getElementById("sensorCircles");
-          var ctx = c.getContext("2d");
-          ctx.beginPath();
-          ctx.arc(100, 75, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(225, 75, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(100, 190, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(225, 190, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(450, 75, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(575, 75, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(450, 190, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(575, 190, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(100, 350, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(225, 350, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(100, 465, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(225, 465, 50, 0, 2 * Math.PI);
-          ctx.stroke();
+      <div id="sensorCirclesSec">
+        <canvas id="sensorCircles1" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles2" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles3" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles4" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles5" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles6" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles7" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles8" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles9" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles10" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles11" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles12" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles13" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles14" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles15" height="200" width="200">
+        </canvas>
+        <canvas id="sensorCircles16" height="200" width="200">
+        </canvas>
+        <br />      
+      </div>
 
-          ctx.beginPath();
-          ctx.arc(450, 350, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(575, 350, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(450, 465, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(575, 465, 50, 0, 2 * Math.PI);
-          ctx.stroke();
-        </script>
-      </canvas>
-      <br />
         <!-- <section>
           <canvas id="barChannelChart" class="hide"></canvas>
         </section> -->
@@ -158,6 +138,7 @@
         <script type="text/javascript" src="./Scripts/ChartRendering/chartLineGraph.js"></script>
         <script type="text/javascript" src="./Scripts/ChartRendering/diffLineGraph.js"></script>
         <script type="text/javascript" src="./Scripts/ChartRendering/renderCharts.js"></script>
+        <script type="text/javascript" src="./Scripts/ChartRendering/sensorRender.js"></script>
         <script type="text/javascript" src="./Scripts/dashboard.js"></script>
     </body>
 </html>

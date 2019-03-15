@@ -94,10 +94,28 @@
   function onFetchRandomDataSuccess(response){
     var forces = JSON.parse(response);
     if(Array.isArray(forces)){
+      if(prevForceArray[0] == null){
+        for(var i = 0; i<16; i++){
+          prevForceArray[i] = forces[i];
+        }
+      }
+      if(prevForceArray[0] != null){
+        for(var i = 0; i<16; i++){
+          var updateVal = (forces[i] - prevForceArray[i]);
+          if(updateVal < 0){
+            updateVal = 0;
+          }
+         updateForceArray[i] = updateVal;
+         updateSensorCicles(updateVal, i);
+          //Update the current prev array to store current array
+          prevForceArray[i] = forces[i];
+        }
+      }
       if(dummyTime == 600){
         dummyTime = 0;
       }
       updateChart(forces,dummyTime);
+      updateDiffChart(updateForceArray,dummyTime);
       dummyTime +=0.25;
     }
   }
@@ -112,8 +130,12 @@
      }
      if(prevForceArray[0] != null){
        for(var i = 0; i<16; i++){
-        updateForceArray[i] = Math.abs(forces[i] - prevForceArray[i]);
-
+         var updateVal = (forces[i] - prevForceArray[i]);
+        updateForceArray[i] = updateVal;
+        if(updateVal <0){
+          updateVal = 0;
+        }
+        updateSensorCicles(updateVal, i);
          //Update the current prev array to store current array
          prevForceArray[i] = forces[i];
        }
