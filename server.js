@@ -27,7 +27,20 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
   user: "testuser",
-  password: " "
+  password: "safesense",
+  database: "safesenselive"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+
+//Create a new Table in the database for each session
+   // var sql = "CREATE TABLE dataTable (Channel1 INT, Channel2 INT, Channel3 INT, Channel4 INT, Channel5 INT, Channel6 INT, Channel7 INT, Channel8 INT, Channel9 INT, Channel0 INT, Channe11 INT, Channel12 INT, Channel13 INT, Channel14 INT, Channel15 INT, Channel16 INT)";
+   // con.query(sql, function (err, result) {
+   //     if (err) throw err;
+   //     console.log("Table created");
+   //   });
 });
 
 app.use(bodyParse.json());
@@ -174,6 +187,14 @@ opn('http://localhost:3000');
 
     app.get('/getRandomData',function(req,res){
         var result = randomTest.getRandomInt(0,1800);
+        var serverTimeStart = process.hrtime();
+        //Get the current time of data entering server
+        //var hrTime = process.hrtime();
+        var sql = "INSERT INTO dataTable (Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, Channel7, Channel8, Channel9, Channel10, Channel11, Channel12, Channel13, Channel14, Channel15, Channel16) VALUES (result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15])";
+
+        var serverTimeEnd = process.hrtime();
+        var serverTime = (serverTimeEnd-serverTimeStart);
+        console.log(serverTime);
         res.send(result);
     });
 
@@ -221,8 +242,23 @@ opn('http://localhost:3000');
     app.get('/getForceData', function(req,res) {
     // console.log('dataAvail: ', dataAvail);
       if (dataAvail) {
+//TODO: Capture time here for annotation into database.
+
+//LOG how much time it is taking for server action
+//Get the current time of data entering server
+var serverTimeStart = process.hrtime();
+//Get the current time of data entering server
+//var hrTime = process.hrtime();
+var sql = "INSERT INTO dataTable (Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, Channel7, Channel8, Channel9, Channel10, Channel11, Channel12, Channel13, Channel14, Channel15, Channel16) VALUES (forces[0], forces[1], forces[2], forces[3], forces[4], forces[5], forces[6], forces[7], forces[8], forces[9], forces[10], forces[11], forces[12], forces[13], forces[14], forces[15])";
+
+var serverTimeEnd = process.hrtime();
+var serverTime = (serverTimeEnd-serverTimeStart);
+console.log(serverTime);
+
         dataAvail = false;
     // console.log(forces);
+
+
         res.send(forces);
       } else {
         res.send('0');

@@ -1,3 +1,5 @@
 exports.myDateTime = function () {
-    return Date();
+  var date = new Date();
+  var current_hour = date.getHours();
+  return (date+current_hour);  
 };
