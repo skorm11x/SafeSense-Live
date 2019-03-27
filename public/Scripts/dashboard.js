@@ -15,8 +15,7 @@
     time = 0;
 
 
-    ajax('../../getModeSelect',"GET",{},onFetchModeSuccess);
-
+    ajax('/getModeSelect',"GET",{},onFetchModeSuccess);
 
 
 
@@ -43,11 +42,12 @@
       xhr.send(JSON.stringify(payload));
     }
 
-       ajax("../getChannelData", "GET",{}, onFetchTempSuccess);
-       ajax("../getBarData","GET",{}, onFetchTempSuccessBar);
+       ajax("/getChannelData", "GET",{}, onFetchTempSuccess);
+       // ajax("../getBarData","GET",{}, onFetchTempSuccessBar);
 
        function onFetchTempSuccess(response){
           hideEle("loader");
+          //console.log("IN FETCH TEMP");
           var respData = JSON.parse(response);
           chartLineGraph.labels = respData.dataPoints.map(dataPoint => dataPoint.time);
           diffLineGraph.labels = respData.dataPoints.map(dataPoint => dataPoint.time);
@@ -60,14 +60,14 @@
       }
 
 
-      function onFetchTempSuccessBar(response){
-         hideEle("loader");
-         var respData = JSON.parse(response);
-         for(var i=0; i<1; i++){
-           chartBarGraph.datasets[i].data = respData.dataPoints.map(dataPoint => dataPoint.force);
-         }
-         renderBarGraph(chartBarGraph)
-     }
+     //  function onFetchTempSuccessBar(response){
+     //     hideEle("loader");
+     //     var respData = JSON.parse(response);
+     //     for(var i=0; i<1; i++){
+     //       chartBarGraph.datasets[i].data = respData.dataPoints.map(dataPoint => dataPoint.force);
+     //     }
+     //     renderBarGraph(chartBarGraph)
+     // }
 
 
   var dummyTime = 0;
@@ -86,9 +86,9 @@
     }
   }, sampleRate);
 
-  setTimeout(function(){
-   document.getElementById('barChannelChart').classList.remove('hide');
-  }, 5000);
+  // setTimeout(function(){
+  //  document.getElementById('barChannelChart').classList.remove('hide');
+  // }, 5000);
 
 //Mode 1 Success response - Random
   function onFetchRandomDataSuccess(response){
@@ -162,12 +162,30 @@ function onFetchSampleDataSuccess(response){
 //Mode 4 Success response - Live
   function onFetchForceDataSuccess(response) {
     var forces = JSON.parse(response);
-    if (Array.isArray(forces)) {
-      if(dummyTime == 60){
+    if(Array.isArray(forces)){
+      if(prevForceArray[0] == null){
+        for(var i = 0; i<16; i++){
+          prevForceArray[i] = forces[i];
+        }
+      }
+      if(prevForceArray[0] != null){
+        for(var i = 0; i<16; i++){
+          var updateVal = (forces[i] - prevForceArray[i]);
+          if(updateVal < 0){
+            updateVal = 0;
+          }
+         updateForceArray[i] = updateVal;
+         updateSensorCicles(updateVal, i);
+          //Update the current prev array to store current array
+          prevForceArray[i] = forces[i];
+        }
+      }
+      if(dummyTime == 600){
         dummyTime = 0;
       }
-      updateChart(forces, dummyTime);
-      dummyTime = dummyTime + 0.25;
+      updateChart(forces,dummyTime);
+      updateDiffChart(updateForceArray,dummyTime);
+      dummyTime +=0.25;
     }
   }
 
