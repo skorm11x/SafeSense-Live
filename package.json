@@ -18,8 +18,11 @@
   "homepage": "https://github.com/Kosik-Chris/SafeSense-Live#readme",
   "dependencies": {
     "canvas-gauges": "^2.1.5",
+    "csv-stringify": "^5.3.0",
     "express": "^4.16.4",
+    "gridstack": "^0.4.0",
     "math.js": "^1.1.43",
+    "microtime": "^3.0.0",
     "mysql": "^2.16.0",
     "opn": "^5.4.0",
     "prompt": "^1.0.0",

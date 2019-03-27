@@ -1,7 +1,7 @@
 function renderBarGraph(forceData) {
       var ctx = document.getElementById("barChannelChart").getContext("2d");
       var options = {
-          responsive: true,
+          responsive: false,
           cubicInterpolationMode: 'default',
           steppedLine: false,
           legend: {
@@ -9,7 +9,7 @@ function renderBarGraph(forceData) {
             position: 'bottom',
           },
           title: {
-            display: false,
+            display: true,
             text: 'Force values per Channel',
             fontSize: 32
           },
@@ -61,15 +61,16 @@ function renderForceChart(forceData) {
       var options = {
           responsive: true,
           legend:{
-            position: 'right',
+            position: 'bottom',
             display: true,
             maxWidth: 1000,
             cubicInterpolationMode: 'default',
             steppedLine: false,
+            maintainAspectRatio: false,
           },
           title: {
             display: true,
-            text: 'Force Data Channel Graph',
+            text: 'Raw Data',
             fontSize: 32
           },
           pan: {
@@ -130,15 +131,16 @@ function renderForceChart(forceData) {
          var options = {
              responsive: true,
              legend:{
-               position: 'right',
+               position: 'bottom',
                display: true,
                maxWidth: 1000,
               cubicInterpolationMode: 'default',
               steppedLine: false,
+              maintainAspectRatio: false,
              },
              title: {
-               enabled: true,
-               text: 'Impact Force Channel Graph',
+               display: true,
+               text: 'Impact Force Value',
                fontSize: 32
              },
              pan: {

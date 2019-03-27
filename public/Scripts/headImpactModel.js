@@ -1,6 +1,6 @@
 
 //Wait until window is loaded to avoid null reference
-window.onload = function(){
+function loadModel(){
 
 var container;
 var footer, footerP;

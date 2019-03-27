@@ -25,7 +25,7 @@ nav.navbar.navbar-expand-lg a:hover{
     color: black;
 }
 .header img{
-  float: left;
+  align-content: center;
 }
 body{
     margin:0;
@@ -39,8 +39,12 @@ h2{
 header{
     background: #2b303b;
     height: 50px;
-    width:100%;
-    display: flex;
+    width:50%;
+    display: inline-block;
+    text-align: center;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
     color:#fff;
 }
 .subheader{
@@ -62,8 +66,8 @@ canvas{
   display: block;
 }
 #channelChart{
-    height: 70%;
-    width: 90%;
+    /* height: 100%;
+    width: 100%; */
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
@@ -80,4 +84,97 @@ canvas{
 }
 .hide{
   display: none;
+}
+.containerStack{
+  padding-top: 75px;
+  border: 1px solid blue;
+
+
+}
+#sensorCirclesSec{
+  width: 100%;
+text-align: center;
+}
+#sensorCircles1{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles2{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles3{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles4{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles5{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles6{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles7{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles8{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles9{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles10{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles11{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles12{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles13{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles14{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles15{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#sensorCircles16{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#HeadImpactModel{
+
 }

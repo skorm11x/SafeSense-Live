@@ -2,7 +2,7 @@
 
   var mode = 0; //Mode selected by user
   //DEFAULT time width display of 27 data points
-  var timeWidthDisplay = 27; //How many time data points are displayed before shift
+  var timeWidthDisplay = 50; //How many time data points are displayed before shift
   //TODO: Depending on Sample rate alter the time display for graphs
   //DEFAULT SAMPLE RATE OF 100 ms
   var sampleRate = 100; //Sample rate in ms

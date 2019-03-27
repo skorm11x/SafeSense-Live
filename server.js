@@ -4,11 +4,20 @@ const http = require('http');
 
 //temp web address
 const hostname = '127.0.0.1';
+var microtime = require('microtime');
 //chosen port to display information
 const port = 3000;
+/***
+Require stringify keeps pipe open for continuous data transmission
+***/
+var stringify = require('csv-stringify');
+var stringifier = stringify();
+
+// DEFINE EVENT LISTENER SETTINGS
+process.setMaxListeners(1000);
+
 //*************LIVE JAVASCRIPT FILES*******************
 const dateTime = require('./Utility/Date');
-const calc = require('./Utility/Calc');
 const randomTest = require('./Test/RandomData');
 const sineWaveTest = require('./Test/sineWaveTest');
 const sampleTest = require('./Test/sampleData');
@@ -24,24 +33,6 @@ var app = express();
 
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "testuser",
-  password: "safesense",
-  database: "safesenselive"
-});
-
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-
-//Create a new Table in the database for each session
-   // var sql = "CREATE TABLE dataTable (Channel1 INT, Channel2 INT, Channel3 INT, Channel4 INT, Channel5 INT, Channel6 INT, Channel7 INT, Channel8 INT, Channel9 INT, Channel0 INT, Channe11 INT, Channel12 INT, Channel13 INT, Channel14 INT, Channel15 INT, Channel16 INT)";
-   // con.query(sql, function (err, result) {
-   //     if (err) throw err;
-   //     console.log("Table created");
-   //   });
-});
 
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: false}));
@@ -54,13 +45,34 @@ var dataAvail = false;
 // Aquire Program Mode desired
 // ************************
 var modeSelect = 0;
+var dbConnect = 0; //Default defines no connection to database
 var prompt = require('prompt');
 
-  //
-  // Start the prompt
-  //
+
   prompt.start();
 
+  // console.log('Database Connection?');
+  // console.log('yes');
+  // console.log('no');
+  // prompt.get(['DB'], function(err, dbConn){
+  //   if(dbConn.DB == 'yes'){
+  //     console.log('Select what database to connect to:');
+  //     console.log('1 : Self connection (Test)');
+  //     console.log('2: Main host connection');
+  //     prompt.get(['Database'], function(err, database){
+  //           if(database.Database == 1){
+  //             //Jump to test host connect sequence
+  //
+  //           }
+  //           if(database.Database == 2){
+  //             //Jump to main host connect sequence
+  //
+  //           }
+  //     });
+  //   }
+  //   else{
+  //     dbConnect = 0;
+  //   }
   console.log('Please select a mode to operate:');
   console.log('test');
   console.log('live');
@@ -75,32 +87,98 @@ var prompt = require('prompt');
         if(result.specifier == 1){
           modeSelect = 1;
           console.log('modeSelect = '+modeSelect+', Random Data Test');
-          setupServer();
+          dbCheck();
         }
         if(result.specifier == 2){
           modeSelect = 2;
           console.log('modeSelect = '+modeSelect+', sineWave Test');
-          setupServer();
+          dbCheck();
         }
         if(result.specifier == 3){
           modeSelect = 3;
           console.log('modeSelect = '+modeSelect+', Sample Data Test');
-          setupServer();
+          dbCheck();
         }
       });
     }
     if(result.Mode=='live'){
       modeSelect = 4;
       console.log('modeSelect = '+modeSelect+', Live Zigbee Data');
-      setupServer();
+      dbCheck();
       zigBee.initializeZigbee();
     }
   });
+
+
+
+
+function dbCheck(){
+
+  var hold = 0;
+
+  console.log("DB Connect? (yes) || (no)");
+  prompt.get(['Connect'], function (err, result) {
+    if(result.Connect == 'yes'){
+      dbConnect = 1;
+      console.log("Open Browser? (yes) || (no)");
+      prompt.get(['browse'], function (err, result) {
+        if(result.browse == 'yes'){
+          //Open default user browser
+          hold = 1;
+          opn('http://localhost:3000');
+          setupServer();
+        }
+        else{
+          setupServer();
+          hold = 1;
+          //do nothing
+        }
+      });
+    }
+    else{
+      dbConnect = 0;
+      console.log("Open Browser? (yes) || (no)");
+      prompt.get(['browse'], function (err, result) {
+        if(result.browse == 'yes'){
+          //Open default user browser
+          hold = 1;
+          opn('http://localhost:3000');
+          setupServer();
+        }
+        else{
+          //do nothing
+          hold = 1;
+          setupServer();
+        }
+      });
+    }
+  });
+}
+
+
+
+
 // ********************
 // Setup Server
 // ********************
 //TODO: Update JSON Location to reflect running server of Dell precision Tower
 function setupServer(){
+
+
+if(dbConnect == 1){
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "testuser",
+    password: "safesense",
+    database: "safesenselive"
+  });
+
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
+}
+
   var channelChartData = {
       location: 'Western Michigan University',
       channel: 'channel',
@@ -135,8 +213,6 @@ function setupServer(){
     ]
   }
 
-//Open default user browser
-opn('http://localhost:3000');
 
 //GET request for modeSelect
   app.get('/getModeSelect', function(req,res){
@@ -187,14 +263,34 @@ opn('http://localhost:3000');
 
     app.get('/getRandomData',function(req,res){
         var result = randomTest.getRandomInt(0,1800);
-        var serverTimeStart = process.hrtime();
-        //Get the current time of data entering server
-        //var hrTime = process.hrtime();
-        var sql = "INSERT INTO dataTable (Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, Channel7, Channel8, Channel9, Channel10, Channel11, Channel12, Channel13, Channel14, Channel15, Channel16) VALUES (result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15])";
+        console.log("First result: "+result);
 
-        var serverTimeEnd = process.hrtime();
-        var serverTime = (serverTimeEnd-serverTimeStart);
-        console.log(serverTime);
+                //Process time first val ms, second val nano
+        var inTime = microtime.now();
+        console.log("Server start time: "+inTime);
+
+        //Delcare statement and values
+        var sqState = "INSERT INTO randomdata (Time,Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, Channel7, Channel8, Channel9, Channel10, Channel11, Channel12, Channel13, Channel14, Channel15, Channel16) VALUES ?";
+        var valState = [
+          [inTime ,result[0], result[1], result[2], result[3], result[4], result[5],
+           result[6], result[7], result[8], result[9], result[10], result[11],
+            result[12], result[13], result[14], result[15]]
+        ];
+
+        //Execute Query in continuous fashion
+        if(dbConnect == 1){
+          con.query(sqState, [valState], function(err) {
+            if (err) throw err;
+          }).stream().pipe(stringifier).pipe(process.stdout);
+        }
+
+
+        var endTime = microtime.now();
+        console.log("Server end time: "+endTime);
+        //Process time first val ms, second val nano
+        var processTime = (endTime-inTime);
+                console.log("Process time: "+processTime);
+        console.log(processTime);
         res.send(result);
     });
 
@@ -242,18 +338,32 @@ opn('http://localhost:3000');
     app.get('/getForceData', function(req,res) {
     // console.log('dataAvail: ', dataAvail);
       if (dataAvail) {
-//TODO: Capture time here for annotation into database.
+        //TODO: Capture time here for annotation into database.
 
-//LOG how much time it is taking for server action
-//Get the current time of data entering server
-var serverTimeStart = process.hrtime();
-//Get the current time of data entering server
-//var hrTime = process.hrtime();
-var sql = "INSERT INTO dataTable (Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, Channel7, Channel8, Channel9, Channel10, Channel11, Channel12, Channel13, Channel14, Channel15, Channel16) VALUES (forces[0], forces[1], forces[2], forces[3], forces[4], forces[5], forces[6], forces[7], forces[8], forces[9], forces[10], forces[11], forces[12], forces[13], forces[14], forces[15])";
+        //LOG how much time it is taking for server action
+        //Get the current time of data entering server
+        var inTime = microtime.now();
+        //Get the current time of data entering server
+        //var hrTime = process.hrtime();
+        //var sql = "INSERT INTO dataTable (Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, Channel7, Channel8, Channel9, Channel10, Channel11, Channel12, Channel13, Channel14, Channel15, Channel16) VALUES (forces[0], forces[1], forces[2], forces[3], forces[4], forces[5], forces[6], forces[7], forces[8], forces[9], forces[10], forces[11], forces[12], forces[13], forces[14], forces[15])";
+        //Delcare statement and values
+        var sqState = "INSERT INTO livedata (Time,Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, Channel7, Channel8, Channel9, Channel10, Channel11, Channel12, Channel13, Channel14, Channel15, Channel16) VALUES ?";
+        var valState = [
+          [inTime,forces[0], forces[1], forces[2], forces[3], forces[4], forces[5],
+           forces[6], forces[7], forces[8], forces[9], forces[10], forces[11],
+            forces[12], forces[13], forces[14], forces[15]]
+        ];
 
-var serverTimeEnd = process.hrtime();
-var serverTime = (serverTimeEnd-serverTimeStart);
-console.log(serverTime);
+        //Execute Query in continuous fashion
+        if(dbConnect == 1){
+          con.query(sqState, [valState], function(err) {
+            if (err) throw err;
+          }).stream().pipe(stringifier).pipe(process.stdout);
+        }
+
+        var endTime = microtime.now();
+        var processTime = (endTime-inTime);
+        console.log(processTime);
 
         dataAvail = false;
     // console.log(forces);
