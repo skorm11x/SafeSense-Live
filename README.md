@@ -1,5 +1,5 @@
 # SafeSense-Live
-Realtime impact sensing. 
+Pseudo Realtime impact sensing. 
 
 #General Description 
 Program designed to show graphs of football helmets and assist in concussion detection. Node.js Application integrating with Zigbee Module.
