@@ -1,4 +1,4 @@
-
+let s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16;
 //Wait until window is loaded to avoid null reference
 function loadModel(){
 
@@ -74,94 +74,7 @@ function init() {
     //document.addEventListener('mousemove', onMouseMove, false);
 });
 
-let s1 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s2 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s3 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s4 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s5 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s6 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s7 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s8 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s9 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s10 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s11 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s12 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s13 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s14 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s15 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-let s16 = new THREE.Mesh(
-  new THREE.CircleGeometry(20,32,100,Math.PI*2),
-  new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
-);
-
-
-  s1.position.set(-30,-100,50);
-  s1.rotateX(-90);
-  s2.position.set(30,-100,50);
-  s2.rotateX(-90);
-  scene.add(s1);
-  scene.add(s2);
-
+    initSensorCircles();
 
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -180,6 +93,138 @@ let s16 = new THREE.Mesh(
     controls.enablePan = false;
     //controls.autoRotate = true;
 
+}
+function initSensorCircles(){
+  s1 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s2 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s3 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s4 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s5 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s6 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s7 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s8 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s9 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s10 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s11 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s12 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s13 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s14 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s15 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+
+  s16 = new THREE.Mesh(
+    new THREE.CircleGeometry(20,32,100,Math.PI*2),
+    new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide})
+  );
+  //Update Positions
+    s1.position.set(-30,-100,50);
+    s1.rotateX(-90);
+    s2.position.set(30,-100,50);
+    s2.rotateX(-90);
+    s3.position.set(-30,-80, 93);
+    s3.rotateX(108);
+    s4.position.set(30,-80, 93);
+    s4.rotateX(108);
+    s5.position.set(-30,-20, 120)
+    s5.rotateX(0);
+    s6.position.set(30,-20, 120);
+    s6.rotateX(0);
+    s7.position.set(-70,-35,50);
+    s7.rotateY(90);
+    s8.position.set(-70,15,50);
+    s8.rotateY(-90);
+    s9.position.set(70,-35,50);
+    s9.rotateY(90);
+    s10.position.set(70,15,50);
+    s10.rotateY(-90);
+    s11.position.set(-50,45,100);
+    s11.rotateY(0);
+    s12.position.set(50,45,100);
+    s12.rotateY(0);
+    s13.position.set(-30,100,50);
+    s13.rotateX(90);
+    s14.position.set(30,100,50);
+    s14.rotateX(90);
+    s15.position.set(-40,100,0);
+    s15.rotateX(90);
+    s16.position.set(40,100,0);
+    s16.rotateX(90);
+  //Add to scene
+
+    scene.add(s1);
+    scene.add(s2);
+    scene.add(s3);
+    scene.add(s4);
+    scene.add(s5);
+    scene.add(s6);
+    scene.add(s7);
+    scene.add(s8);
+    scene.add(s9);
+    scene.add(s10);
+    scene.add(s11);
+    scene.add(s12);
+    scene.add(s13);
+    scene.add(s14);
+    scene.add(s15);
+    scene.add(s16);
 }
 
 
