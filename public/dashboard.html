@@ -80,6 +80,22 @@
         <img src="./Assets/Images/SafeSense Technologies (Logo).jpg" height="55px"/>
         <h2>Realtime Channel Updates</h2>
       </div>
+      <div id="graphCtrl">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="widthSlider">
+              <h4>Time width control</h4>
+              <p>Time width: <span id="wValue"></span></p>
+              <input type="range" min="20" max="100" value="50" id="wSlider" />
+            </div>
+            <div class="sampleSlider">
+              <h4>Sample rate control</h4>
+              <p>Sample rate: <span id="rValue"></span></p>
+              <input type="range" min="10" max="500" value="100" id="rSlider" />
+            </div>
+          </div>
+        </div>
+      </div>
            <div id="loader" class="loader">
               Loading...
            </div>
@@ -154,45 +170,26 @@
 
         </div>
 
+       <script>
+          var wslider = document.getElementById("wSlider");
+          var woutput = document.getElementById("wValue");
+          var rslider = document.getElementById("rSlider");
+          var routput = document.getElementById("rValue");
+//TODO: Place into dashboard.js and update via ajax
+          woutput.innerHTML = wslider.value;
+          timeWidthDisplay = wslider.value;
 
-	<!-- <div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<h2>A gridstacks.js dashboard</h2>
-			</div>
-			<div class="col-sm-12 well">
-				<div class="grid-stack">
-					<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="2" data-gs-height="2">
-						<div class="grid-stack-item-content panel panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">Widget 1</h3>
-							</div>
-							<div class=panel-body">
-								content here
-							</div>
-						</div>
-					</div>
-					<div class="grid-stack-item" data-gs-x="2" data-gs-y="0" data-gs-width="2" data-gs-height="2">
-						<div class="grid-stack-item-content panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">Widget 2</h3>
-							</div>
-							<div class=panel-body">
-								content here
-							</div>
-						</div>
-					</div>
-					<div class="grid-stack-item" data-gs-x="0" data-gs-y="2" data-gs-width="3" data-gs-height="2">
-						<div class="grid-stack-item-content panel panel-warning">
-							<div class="panel-heading">
-								<h3 class="panel-title">Widget 3</h3>
-							</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
+          sampleRate = rslider.value;
+          routput.innerHTML = rslider.value;
+
+          wslider.oninput = function() {
+          woutput.innerHTML = this.value;
+          };
+
+          rslider.oninput = function(){
+            routput.innerHTML = this.value;
+          };
+        </script>
 
         <script type="text/javascript">
         $(function () {

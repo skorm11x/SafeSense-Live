@@ -353,5 +353,15 @@ var chartLineGraph = {
          data: [],
          spanGaps: false,
       },
-   ]
+   ],
+   options: {
+     sclaes: {
+       yAxes: [{
+         ticks: {
+           beginAtZero: true,
+
+         }
+       }]
+     },
+   }
 };

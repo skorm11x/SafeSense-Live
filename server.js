@@ -268,11 +268,11 @@ if(dbConnect == 1){
 
     app.get('/getRandomData',function(req,res){
         var result = randomTest.getRandomInt(0,1800);
-        console.log("First result: "+result);
+        //console.log("First result: "+result);
 
                 //Process time first val ms, second val nano
         var inTime = microtime.now();
-        console.log("Server start time: "+inTime);
+        //console.log("Server start time: "+inTime);
 
         //Delcare statement and values
         var sqState = "INSERT INTO randomdata (Time,Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, Channel7, Channel8, Channel9, Channel10, Channel11, Channel12, Channel13, Channel14, Channel15, Channel16) VALUES ?";
@@ -291,11 +291,11 @@ if(dbConnect == 1){
 
 
         var endTime = microtime.now();
-        console.log("Server end time: "+endTime);
+        //console.log("Server end time: "+endTime);
         //Process time first val ms, second val nano
         var processTime = (endTime-inTime);
-                console.log("Process time: "+processTime);
-        console.log(processTime);
+                //console.log("Process time: "+processTime);
+        //console.log(processTime);
         res.send(result);
     });
 
@@ -375,7 +375,7 @@ if(dbConnect == 1){
 
 
         res.send(forces);
-        console.log(forces);
+        //console.log(forces);
       }
        else {
         res.send('0');

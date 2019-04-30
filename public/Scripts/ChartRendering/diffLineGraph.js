@@ -353,5 +353,15 @@ var diffLineGraph = {
          data: [],
          spanGaps: false,
       },
-   ]
+   ],
+   options: {
+     sclaes: {
+       yAxes: [{
+         ticks: {
+           beginAtZero: true,
+
+         }
+       }]
+     },
+   }
 };
