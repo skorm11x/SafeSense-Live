@@ -24,14 +24,48 @@ function init() {
     camera = new THREE.PerspectiveCamera(22.5, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.set(0,-1000,0);
     camera.lookAt(0,0,0);
+
+
+
     //create new scene
     scene = new THREE.Scene();
+
+    document.getElementById('loader').style.display = 'block';
+    //custom 3s timeout for OBJ loading
+    setTimeout(function(){
+        document.getElementById('loader').style.display = 'none';
+         document.getElementsByTagName("body")[0].style.overflow = 'scroll';
+         let loadingScreen = document.getElementById('loading-screen');
+         loadingScreen.classList.add('fade-out');
+         // loadingScreen.classList.add('fade-out');
+    },5000);
      ambient = new THREE.AmbientLight(0xFFFFFF);
      scene.add(ambient);
 
      //lighting =  new THREE.HemisphereLight(0xFFFFFF,0x269FCB,1.0);
 
     //scene.add(lighting);
+
+
+    var mtlLoader = new THREE.MTLLoader();
+    mtlLoader.setPath('Assets/Models/');
+    mtlLoader.load('./Nurbs/NurbsHead.mtl', function (materials) {
+
+        materials.preload();
+
+
+    var objLoader = new THREE.OBJLoader();
+    objLoader.setMaterials(materials);
+    objLoader.setPath('Assets/Models/');
+    objLoader.load('./Nurbs/NurbsHead.obj', function (object) {
+
+        scene.add(object);
+
+    });
+    //document.addEventListener('mousemove', onMouseMove, false);
+});
+
+    initSensorCircles();
 
     //add lighting to the Scene
     keyLight = new THREE.DirectionalLight(0xFFFFFF, 1.0);
@@ -51,38 +85,15 @@ function init() {
     scene.add(backLight);
     scene.add(secondBacklight);
 
-    var mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setPath('Assets/Models/');
-    mtlLoader.load('./Nurbs/NurbsHead.mtl', function (materials) {
-
-        materials.preload();
-
-
-    var objLoader = new THREE.OBJLoader();
-    objLoader.setMaterials(materials);
-    objLoader.setPath('Assets/Models/');
-    objLoader.load('./Nurbs/NurbsHead.obj', function (object) {
-
-        scene.add(object);
-
-    });
-
-
-
-
-    window.addEventListener('resize', onWindowResize, false);
-    //document.addEventListener('mousemove', onMouseMove, false);
-});
-
-    initSensorCircles();
 
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(600, 600);
-    //renderer.setSize(window.innerWidth, window.innerHeight);
+    // renderer.setSize(600, 600);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor( 0x333F47, 1);
 
     container.appendChild(renderer.domElement);
+
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -93,6 +104,7 @@ function init() {
     controls.enablePan = false;
     //controls.autoRotate = true;
 
+    window.addEventListener('resize', onWindowResize, false);
 }
 function initSensorCircles(){
   s1 = new THREE.Mesh(
@@ -230,7 +242,7 @@ function initSensorCircles(){
 
 function animate() {
   requestAnimationFrame(animate);
-    controls.update();
+    //controls.update();
   render();
 }
 function render() {
@@ -250,6 +262,11 @@ function onMouseMove(event) {
     camera.position.y += (mouseY - camera.position.y) * 0.005;
     //set up camera position
     camera.lookAt(scene.position);
+}
+
+function onTransitionEnd(event){
+  const element = event.target;
+  element.remove();
 }
 
 }

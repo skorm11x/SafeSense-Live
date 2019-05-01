@@ -1,7 +1,4 @@
 //**Define 2 Color control ranges for impact values
-// let lowerImpactColor = '#C7E6D5';
-// let middleImpactColor = '#F4DF00';
-// let upperImpactColor = '#FF5D00';
 
 let lowerImpactColorH = 0xC7E6D5;
 let middleImpactColorH = 0xF4DF00;
@@ -127,433 +124,194 @@ function updateSensorCicles(updateVal, i){
 
   //Channel 1
   if(i == 0){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles1");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s1.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles1");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s1.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles1");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s1.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 2
   if(i == 1){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles2");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s2.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
+
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles2");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s2.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles2");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s2.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 3
   if(i == 2){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles3");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s3.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles3");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s3.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles3");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s3.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 4
   if(i == 3){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles4");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s4.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles4");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s4.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles4");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s4.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 5
   if(i == 4){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles5");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s5.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles5");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s5.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles5");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s5.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 6
   if(i == 5){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles6");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s6.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles6");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s6.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles6");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s6.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 7
   if(i == 6){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles7");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s7.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles7");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s7.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles7");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s7.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 8
   if(i == 7){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles8");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s8.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles8");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s8.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles8");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s8.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 9
   if(i == 8){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles9");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s9.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles9");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s9.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles9");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s9.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 10
   if(i == 9){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles10");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s10.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles10");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s10.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles10");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s10.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 11
   if(i == 10){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles11");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s11.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles11");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s11.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles11");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s11.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 12
   if(i == 11){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles12");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s12.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles12");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s12.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles12");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s12.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 13
   if(i == 12){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles13");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s13.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles13");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s13.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles13");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s13.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 14
   if(i == 13){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles14");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s14.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles14");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s14.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles14");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s14.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 15
   if(i == 14){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles15");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s15.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles15");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s15.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles15");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s15.material.color.setHex(upperImpactColorH);
     }
   }
   //Channel 16
   if(i == 15){
-    //Display green safe value?
     if(updateVal>= 0 && updateVal <800){
-        // var c1 = document.getElementById("sensorCircles16");
-        // var ctx1 = c1.getContext("2d");
-        // ctx1.fillStyle = lowerImpactColor;
-        // ctx1.fill();
         s16.material.color.setHex(lowerImpactColorH);
     }
-    //Display yellow warning value?
     if(updateVal>=800 && updateVal < 1300){
-      // var c1 = document.getElementById("sensorCircles16");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = middleImpactColor;
-      // ctx1.fill();
       s16.material.color.setHex(middleImpactColorH);
     }
-    //Display red heavy impact value!
     if(updateVal >= 1300 && updateVal <1900){
-      // var c1 = document.getElementById("sensorCircles16");
-      // var ctx1 = c1.getContext("2d");
-      // ctx1.fillStyle = upperImpactColor;
-      // ctx1.fill();
       s16.material.color.setHex(upperImpactColorH);
     }
   }
