@@ -78,7 +78,7 @@
         </nav>
       <div class="header">
         <img src="./Assets/Images/SafeSense Technologies (Logo).jpg" height="55px"/>
-        <h2>Realtime Channel Updates</h2>
+        <h2><u>Dashboard View</u></h2>
       </div>
       <div>
         <section id="loading-screen">
@@ -89,14 +89,14 @@
              <div class="row">
                <div class="col-sm-12">
                  <div class="grid-stack">
-                   <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="6" data-gs-height="6">
+                   <div class="grid-stack-item" data-gs-x="3" data-gs-y="0" data-gs-width="7" data-gs-height="8">
                    <div class="grid-stack-item-content panel panel-primary">
                      <div class ="panel-body">
                    <canvas id="channelChart"></canvas>
                      </div>
                  </div>
                </div>
-               <div class="grid-stack-item" data-gs-x="7" data-gs-y="0" data-gs-width="6" data-gs-height="6">
+               <div class="grid-stack-item" data-gs-x="3" data-gs-y="7" data-gs-width="7" data-gs-height="8">
                  <div class="grid-stack-item-content panel panel-primary">
                    <div class ="panel-body">
                  <canvas id="diffChart"></canvas>
@@ -107,18 +107,10 @@
              </div>
            </div>
          </div>
-         <br />
-         <br />
-         <br />
-         <br />
         <div id="HeadImpactModel"></div>
         <script type="text/javascript">
         $(function () {
-          var options = {
-              cellHeight: 80,
-              verticalMargin: 10
-            };
-        $('.grid-stack').gridstack(options);
+        $('.grid-stack').gridstack();
         });
         </script>
 

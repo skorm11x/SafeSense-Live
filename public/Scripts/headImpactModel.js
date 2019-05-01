@@ -39,6 +39,10 @@ function init() {
          loadingScreen.classList.add('fade-out');
          // loadingScreen.classList.add('fade-out');
     },5000);
+    setTimeout(function(){
+      //let loadingScreen = document.getElementById('loading-screen');
+      //loadingScreen.remove(); //remove entire element to remove conflicts
+    },5500);
      ambient = new THREE.AmbientLight(0xFFFFFF);
      scene.add(ambient);
 
@@ -89,7 +93,7 @@ function init() {
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     // renderer.setSize(600, 600);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(windowHalfX, windowHalfY);
     renderer.setClearColor( 0x333F47, 1);
 
     container.appendChild(renderer.domElement);
@@ -250,8 +254,8 @@ function render() {
 }
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = windowHalfX / windowHalfY;
+    renderer.setSize(windowHalfX, windowHalfY);
     camera.updateProjectionMatrix();
 };
 

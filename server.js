@@ -191,7 +191,7 @@ if(dbConnect == 1){
       dataPoints: [
         {
           time: 0,
-          force: 1000
+          force: 0
         }
       ]
     }
