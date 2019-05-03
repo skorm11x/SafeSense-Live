@@ -3,9 +3,8 @@
   var mode = 0; //Mode selected by user
   //DEFAULT time width display of 27 data points
   var timeWidthDisplay = 50; //How many time data points are displayed before shift
-  //TODO: Depending on Sample rate alter the time display for graphs
   //DEFAULT SAMPLE RATE OF 100 ms
-  var sampleRate = 100; //Sample rate in ms
+  var sampleRate = 250; //Sample rate in ms
 
   //By Default this array will be empty at start
   var prevForceArray = new Array(16);//Array storing previous ForceArray
@@ -47,6 +46,7 @@
 
        function onFetchTempSuccess(response){
           hideEle("loader");
+          var forceArray = new Array(16);
           //console.log("IN FETCH TEMP");
           var respData = JSON.parse(response);
           chartLineGraph.labels = respData.dataPoints.map(dataPoint => dataPoint.time);
@@ -54,9 +54,11 @@
           for(var i=0; i<16; i++){
             chartLineGraph.datasets[i].data = respData.dataPoints.map(dataPoint => dataPoint.force);
             diffLineGraph.datasets[i].data = respData.dataPoints.map(dataPoint => dataPoint.force);
+            forceArray.push(respData.dataPoints.map(dataPoint => dataPoint.force)); //add force point into forceArray
           }
           renderForceChart(chartLineGraph)
           renderDiffChart(diffLineGraph)
+
       }
 
 
@@ -211,6 +213,7 @@ function onFetchSampleDataSuccess(response){
     //At j = 10 baseLineArray should have 10 arrays inside of it.
     forceChartRef.update();
     //diffChartRef.update();
+
   }
 
   function updateDiffChart(forceArray, time){
