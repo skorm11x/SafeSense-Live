@@ -44,6 +44,7 @@ var mysql = require('mysql');
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/scripts', express.static(__dirname + '/node_modules'));
 app.set('title','SafeSense LIVE');
 
 

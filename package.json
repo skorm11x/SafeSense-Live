@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Kosik-Chris/SafeSense-Live#readme",
   "dependencies": {
+    "anychart": "^8.5.1",
     "canvas-gauges": "^2.1.5",
     "csv-stringify": "^5.3.0",
     "express": "^4.16.4",
