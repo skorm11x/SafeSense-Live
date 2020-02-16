@@ -1,10 +1,10 @@
 # SafeSense-Live
 Pseudo Realtime impact sensing. 
 
-#General Description 
+# General Description 
 Program designed to show graphs of football helmets and assist in concussion detection. Node.js Application integrating with Zigbee Module.
 
-#Future Upgrades in order:
+# Future Upgrades in order:
 1. UI upgrade
 2. Finish out test data mode with high school football team test data
 3. Configure Zigbee and server.js for multiple helmet connections
